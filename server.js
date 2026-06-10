@@ -13,6 +13,7 @@ const fs      = require('fs');
 const crypto  = require('crypto');
 
 const app  = express();
+app.use(express.static("public"));
 const PORT = process.env.PORT || 3000;
 const DB   = path.join(__dirname, 'data', 'db.json');
 
@@ -405,5 +406,11 @@ app.get('/', (req, res) => {
   if (!req.session.user) return res.redirect('/login.html');
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/login.html");
+});
 
+app.get("/login.html", (req, res) => {
+  res.sendFile(__dirname + "/public/login.html");
+});
 app.listen(PORT, () => console.log(`\n✅ CNC Operating System running at http://localhost:${PORT}\n   Default login: director@cnc.com / Director2026!\n`));
