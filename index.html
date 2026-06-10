@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CNC Operating System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
+<link rel="stylesheet" href="/app.css"/>
+</head>
+<body>
+
+<div id="app">
+  <!-- Top bar -->
+  <header class="topbar" role="banner">
+    <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation">
+      <i class="ti ti-menu-2" aria-hidden="true"></i>
+    </button>
+    <div class="topbar-brand">
+      <span class="brand-icon">🏥</span>
+      <span class="brand-text">CNC <span class="brand-sub">Operating System</span></span>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-pill pill-green"><i class="ti ti-circle-dot" aria-hidden="true"></i><span id="active-count">—</span> active</div>
+      <div class="topbar-pill" id="user-pill"><i class="ti ti-user-circle" aria-hidden="true"></i><span id="user-name">—</span></div>
+      <button class="topbar-btn" onclick="logout()" title="Sign out"><i class="ti ti-logout" aria-hidden="true"></i></button>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+    <div class="nav-section">Core</div>
+    <button class="nav-item active" data-page="dashboard"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>Dashboard</button>
+    <button class="nav-item" data-page="patients"><i class="ti ti-users" aria-hidden="true"></i>Patients / EHR</button>
+    <button class="nav-item" data-page="reports24hr"><i class="ti ti-report" aria-hidden="true"></i>24-Hour Reports</button>
+    <button class="nav-item" data-page="rounding"><i class="ti ti-stethoscope" aria-hidden="true"></i>Supervisor Rounds</button>
+    <div class="nav-section mt">Services</div>
+    <button class="nav-item" data-page="curves"><i class="ti ti-heart" aria-hidden="true"></i>Curves in Care</button>
+    <button class="nav-item" data-page="wound"><i class="ti ti-bandage" aria-hidden="true"></i>Wound Care</button>
+    <div class="nav-section mt">Operations</div>
+    <button class="nav-item" data-page="inventory"><i class="ti ti-box" aria-hidden="true"></i>Inventory</button>
+    <button class="nav-item" data-page="equipment"><i class="ti ti-device-heart-monitor" aria-hidden="true"></i>Equipment Rental</button>
+    <button class="nav-item" data-page="staff"><i class="ti ti-id-badge" aria-hidden="true"></i>Staff</button>
+    <div class="nav-section mt">Reports</div>
+    <button class="nav-item" data-page="incidents"><i class="ti ti-alert-triangle" aria-hidden="true"></i>Incidents</button>
+    <button class="nav-item" data-page="settings" id="nav-settings" style="display:none"><i class="ti ti-settings" aria-hidden="true"></i>Settings</button>
+  </nav>
+
+  <!-- Main content area -->
+  <main class="main" id="main-content" role="main">
+    <div id="page-content">
+      <div class="loading-spinner"><i class="ti ti-loader-2 spin" aria-hidden="true"></i> Loading…</div>
+    </div>
+  </main>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+<!-- Global modal -->
+<div class="modal-overlay" id="global-modal" role="dialog" aria-modal="true">
+  <div class="modal" id="global-modal-inner">
+    <div class="modal-hdr">
+      <h2 id="modal-title">—</h2>
+      <button class="close-btn" onclick="closeModal()" aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer" id="modal-footer"></div>
+  </div>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
